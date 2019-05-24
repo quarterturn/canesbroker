@@ -52,7 +52,8 @@ def fetch_live_stats(link):
                 time_remaining = "00:00"
             return current_period, home_sog, away_sog, home_powerplay, away_powerplay, time_remaining
         except:
-            return
+            time_remaining = "00:00"
+            return current_period, home_sog, away_sog, home_powerplay, away_powerplay, time_remaining
     except requests.exceptions.RequestException:
         print("Error encountered getting live stats")
     except requests.exceptions.HTTPError as errh:

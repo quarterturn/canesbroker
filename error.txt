@@ -1,0 +1,11 @@
+Game Over!
+No Game Today!
+No Game Today!
+Game Over!
+No Game Today!
+Error encountered, returning 0 for score
+Traceback (most recent call last):
+  File "canesbroker.py", line 146, in <module>
+    home_score, home_team, away_score, away_team, live_stats_link = nhl.fetch_game(team_id)
+TypeError: 'NoneType' object is not iterable
+Exiting.

@@ -143,17 +143,11 @@ if __name__ == "__main__":
 
                         # new function fetch_game(team_id)
                         # returns home_score, home_team, away_score, away_team
-                        try:
-                            home_score, home_team, away_score, away_team, live_stats_link = nhl.fetch_game(team_id)
-                        except:
-                            print("nhl.fetch_game error encountered")
-                        # print("Home team: {0} Home score: {1} Away team: {2} Away score: {3}".format( teams[home_team], home_score, teams[away_team], away_score)) 
+                        home_score, home_team, away_score, away_team, live_stats_link = nhl.fetch_game(team_id)
+                        #print("Home team: {0} Home score: {1} Away team: {2} Away score: {3}".format( teams[home_team], home_score, teams[away_team], away_score)) 
 
                         # get stats from the game
-                        try:
-                           current_period, home_sog, away_sog, home_powerplay, away_powerplay, time_remaining = nhl.fetch_live_stats(live_stats_link) 
-                        except:
-                            print("nhl.fetch_live_state error encountered")
+                        current_period, home_sog, away_sog, home_powerplay, away_powerplay, time_remaining = nhl.fetch_live_stats(live_stats_link) 
 
                         # If score change...
                         if new_score != old_score:
@@ -176,13 +170,6 @@ if __name__ == "__main__":
                         print("Game Over!")
                         old_score = 0 # Reset for new game
                         ret = client1.publish("canes_data/is_game", "False")
-                        ret = client1.publish("canes_data/current_period", "0")
-                        ret = client1.publish("canes_data/home_sog", "0")
-                        ret = client1.publish("canes_data/away_sog", "0")
-                        ret = client1.publish("canes_data/time_remaining", "0")
-                        ret = client1.publish("canes_data/canes_score", "0")
-                        ret = client1.publish("canes_data/home_score", "0")
-                        ret = client1.publish("canes_data/away_score", "0")
                         sleep("day")  # sleep till tomorrow
                 else:
                     print("No Game Today!")
@@ -195,15 +182,6 @@ if __name__ == "__main__":
 
     except KeyboardInterrupt:
         print("\nCtrl-C pressed")
-        ret = client1.publish("canes_data/is_game", "False")
-        ret = client1.publish("canes_data/current_period", "0")
-        ret = client1.publish("canes_data/home_sog", "0")
-        ret = client1.publish("canes_data/away_sog", "0")
-        ret = client1.publish("canes_data/time_remaining", "0")
-        ret = client1.publish("canes_data/canes_score", "0")
-        ret = client1.publish("canes_data/home_score", "0")
-        ret = client1.publish("canes_data/away_score", "0")
-
         client1.loop_stop()
         client1.disconnect()
 
