@@ -12,7 +12,7 @@ import ssl
 broker = "localhost"
 port = 1883
 user = "admin"
-password = "ftgvcdrU2!"
+password = "<password>"
 
 #main_dir = os.getcwd()
 main_dir = "/home/ubuntu/canesbroker"
